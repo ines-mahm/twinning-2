@@ -6,43 +6,31 @@ using System.Collections.Generic;
 
 public class GameController : MonoBehaviour
 {
-	//Pattern
-    [SerializeField]
-	private Sprite Image;
 
-	public Sprite[] pattern;
+//Pattern aus Sprite
+	public Sprite[] allPattern;
 	public List<Sprite> gamePattern = new List<Sprite>();
-    //
-
+    
+//Leere Liste mit Button Objects
 	public List<Button> cards = new List<Button>();
   
-	// Guesses - Controlling Game
-    public bool firstGuess, secondGuess;
-	private int countGuesses;
-    private int countCorrectGuesses;
-	private int gameGuesses;
-
-	private int firstGuessIndex, secondGuessIndex;
-
-	private string firstGuessCard, secondGuessCard;
-    // 
-
-
+// Sprites Pattern aus Ordner laden bei Laufzeit
     void Awake()
 	{
-		pattern = Resources.LoadAll<Sprite>("Sprites/cards");
+		allPattern = Resources.LoadAll<Sprite>("Sprites/cards");
 	}
 
+//start
     void Start()
 	{
 		GetCards();
 		AddListeners();
-		AddGamePattern();
+		DefinePattern();
 		Shuffle(gamePattern);
-		gameGuesses = gamePattern.Count / 2;
-		
+		AddCardPattern();
 	}
 
+// Leere Karten aufrufen und Befüllen der Liste mit Button Component
 	void GetCards()
 	{
 		GameObject[] objects = GameObject.FindGameObjectsWithTag("CardButton");
@@ -50,112 +38,25 @@ public class GameController : MonoBehaviour
 		for (int i = 0; i < objects.Length; i++)
 		{
 			cards.Add(objects[i].GetComponent<Button>());
-			cards[i].image.sprite = Image;
 		}
 	}
 
-    //Karten zweimal abbilden
-    void AddGamePattern()
+// Karten Pattern definieren
+	void DefinePattern()
 	{
-		int looper = cards.Count;
-		int index = 0;
-
-        for(int i=0; i < looper; i ++)
+		for (int i = 0; i < cards.Count; i++)
 		{
-            if (index == looper / 2)
-			{
-				index = 0;
-			}
-
-			gamePattern.Add(pattern[index]);
-			index++;
-		}
-	}
-
-    void AddListeners()
-	{
-        foreach(Button card_btn in cards)
-		{
-			card_btn.onClick.AddListener(() => Match());
-		}
-	}
-
-    //Card Matching
-	public void Match()
-	{
-		//string name = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name;
-        //Debug.Log ("You are Clicking A button named " + name);
-
-        if(!firstGuess)
-		{
-			firstGuess = true;
-			firstGuessIndex = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
-			firstGuessCard = gamePattern[firstGuessIndex].name;
-            cards[firstGuessIndex].image.sprite = gamePattern[firstGuessIndex];
-
-		} else if (!secondGuess)
-		{
-			secondGuess = true;
-			secondGuessIndex = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
-			secondGuessCard = gamePattern[secondGuessIndex].name;
-            cards[secondGuessIndex].image.sprite = gamePattern[secondGuessIndex];
-
-			StartCoroutine(CheckIfTheCardsMatch());
-			/*if (firstGuessCard == secondGuessCard)
-			{
-				Debug.Log("Yeay, the Cards match!");
-			} else
-			{
-				Debug.Log("Sorry, the Cards DON'T match!");
-			}*/
-
-
-		}
-	}
-
-    IEnumerator CheckIfTheCardsMatch()
-	{
-        yield return new WaitForSeconds (1f);
-		
-		if (firstGuessCard == secondGuessCard) 
-		{
-			yield return new WaitForSeconds(.5f);
-
-           
-			cards[firstGuessIndex].interactable = false;
-			cards[secondGuessIndex].interactable = false;
-
-			cards[firstGuessIndex].image.color = new Color(0, 0, 0);
-			cards[secondGuessIndex].image.color = new Color(0, 0, 0);
-
-            CheckIfGameIsFinished();
-		} else 
-		{
-			yield return new WaitForSeconds(.5f);
-
-			cards[firstGuessIndex].image.sprite = Image;
-			cards[secondGuessIndex].image.sprite = Image;
+			gamePattern.Add(allPattern[i]);
 		}
 
-		yield return new WaitForSeconds(.5f);
-		
-		firstGuess = secondGuess = false;
+        // Eine Karte doppelt anzeigen, indem man eine überschreibt
+		gamePattern[0] = gamePattern[Random.Range(1, (gamePattern.Count - 1))];
 	}
 
-	void CheckIfGameIsFinished()
+// Karten random shufflen    
+	void Shuffle(List<Sprite> list)
 	{
-		countCorrectGuesses++;
-
-		if (countCorrectGuesses == gameGuesses)
-		{
-			Debug.Log("Game Finished");
-			Debug.Log("It took you " + countGuesses + " many guess(es) to finish the game");
-		}
-	}
-
-    void Shuffle(List<Sprite> list)
-	{
-        for(int i = 0; i < list.Count; i++)
+		for (int i = 0; i < list.Count; i++)
 		{
 			Sprite temp = list[i];
 			int randomIndex = Random.Range(i, list.Count);
@@ -163,5 +64,57 @@ public class GameController : MonoBehaviour
 			list[randomIndex] = temp;
 		}
 	}
+
+// Definierte Pattern der Kartenliste zuweisen & abbilden   
+	void AddCardPattern()
+	{
+        for (int i = 0; i < cards.Count; i++)
+		{
+			cards[i].image.sprite = gamePattern[i];
+		}
+	}
+
+// Bei Klick kontrollieren ob es das Pattern doppelt gibt
+	void AddListeners()
+	{
+        foreach(Button card_btn in cards)
+		{
+			card_btn.onClick.AddListener(() => Match());
+		}
+	}
+
+//Kontrollieren ob es das gerade angeklickte Pattern zwei mal gibt
+	public void Match()
+	{
+		int guessIndex = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
+		string guessedCardName = gamePattern[guessIndex].name;
+
+		int nameOccurences = 0;
+
+		for (int i = 0; i < cards.Count; i++)
+		{
+			if (guessedCardName == gamePattern[i].name)
+			{
+				nameOccurences++;
+			}
+		}
+
+		CheckIfGameIsFinished(nameOccurences > 1);
+	}
+
+ //Playercontroll
+	void CheckIfGameIsFinished(bool gameWon)
+	{
+		if (gameWon)
+		{
+			Debug.Log("You guessed correct! :D");
+			Debug.Log("Game Finished");
+		}
+		else
+		{
+			Debug.Log("You guessed wrong! :(");
+		}
+	}
+
 
 } //GameController

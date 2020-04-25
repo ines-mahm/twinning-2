@@ -13,7 +13,7 @@ public class AddCards : MonoBehaviour
 
     void Awake()
 	{
-        for (int i=0; i < 8; i++)
+        for (int i=0; i < 12; i++)
 		{
 			GameObject card = Instantiate(card_btn);
 			card.name = "" + i;

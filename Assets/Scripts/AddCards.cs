@@ -6,7 +6,9 @@ public class AddCards : MonoBehaviour
 {
 
 	[SerializeField]
-	private Transform GameField;
+	private Transform GameField_A;
+	[SerializeField]
+	private Transform GameField_B;
 
 	[SerializeField]
 	private GameObject card_btn;
@@ -17,7 +19,7 @@ public class AddCards : MonoBehaviour
 		{
 			GameObject card = Instantiate(card_btn);
 			card.name = "" + i;
-			card.transform.SetParent(GameField, false);
+			card.transform.SetParent(i%2==0? GameField_A : GameField_B, false);
 		}
 	}
 }

@@ -25,8 +25,8 @@ public class GameController : MonoBehaviour
 	{
 		GetCards();
 		AddListeners();
-		DefinePattern();
-		Shuffle(gamePattern);
+		DefineRandomPattern();
+		//Shuffle(gamePattern);
 		AddCardPattern();
 	}
 
@@ -42,28 +42,34 @@ public class GameController : MonoBehaviour
 	}
 
 // Karten Pattern definieren
-	void DefinePattern()
+	void DefineRandomPattern()
 	{
-		for (int i = 0; i < cards.Count; i++)
+		var listCopy = new List<Sprite>(allPattern);
+		var randNum = 0;
+		while (listCopy.Count > 0)
 		{
-			gamePattern.Add(allPattern[i]);
+			randNum = Random.Range(0, listCopy.Count);
+			gamePattern.Add(listCopy[randNum]);
+			listCopy.RemoveAt(randNum);
 		}
 
         // Eine Karte doppelt anzeigen, indem man eine überschreibt
-		gamePattern[0] = gamePattern[Random.Range(1, (gamePattern.Count - 1))];
+		randNum = Random.Range(2, gamePattern.Count);
+		gamePattern[randNum%2==0?1:0] = gamePattern[randNum];
 	}
 
-// Karten random shufflen    
-	void Shuffle(List<Sprite> list)
-	{
-		for (int i = 0; i < list.Count; i++)
-		{
-			Sprite temp = list[i];
-			int randomIndex = Random.Range(i, list.Count);
-			list[i] = list[randomIndex];
-			list[randomIndex] = temp;
-		}
-	}
+	//Lev: ich habe diese methode mit DefinePattern zusammengelegt, weil das sonst zu kompliziert geworden wäre, die doppelte karte dem richtigen feld zuzuweisen.
+	// Karten random shufflen    
+	//void Shuffle(List<Sprite> list)
+	//{
+	//	for (int i = 0; i < list.Count; i++)
+	//	{
+	//		Sprite temp = list[i];
+	//		int randomIndex = Random.Range(i, list.Count);
+	//		list[i] = list[randomIndex];
+	//		list[randomIndex] = temp;
+	//	}
+	//}
 
 // Definierte Pattern der Kartenliste zuweisen & abbilden   
 	void AddCardPattern()
@@ -86,7 +92,9 @@ public class GameController : MonoBehaviour
 //Kontrollieren ob es das gerade angeklickte Pattern zwei mal gibt
 	public void Match()
 	{
-		int guessIndex = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
+		var selectedGO = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
+		var player_name = selectedGO.transform.parent.name.EndsWith("A") ? "A" : "B";
+		int guessIndex = int.Parse(selectedGO.name);
 		string guessedCardName = gamePattern[guessIndex].name;
 
 		int nameOccurences = 0;
@@ -99,20 +107,20 @@ public class GameController : MonoBehaviour
 			}
 		}
 
-		CheckIfGameIsFinished(nameOccurences > 1);
+		CheckIfGameIsFinished(nameOccurences > 1, player_name);
 	}
 
  //Playercontroll
-	void CheckIfGameIsFinished(bool gameWon)
+	void CheckIfGameIsFinished(bool gameWon, string player_name)
 	{
 		if (gameWon)
 		{
-			Debug.Log("You guessed correct! :D");
+			Debug.Log("Player "+ player_name + " guessed correct! :D");
 			Debug.Log("Game Finished");
 		}
 		else
 		{
-			Debug.Log("You guessed wrong! :(");
+			Debug.Log(player_name+", you guessed wrong! :(");
 		}
 	}
 

@@ -10,16 +10,16 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void EndGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+    }
+
     public void QuitGame()
     {
         //Debug.Log("QUIT!");
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
 
-    }
-
-   public void EndGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     }
 }

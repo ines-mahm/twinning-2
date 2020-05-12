@@ -22,4 +22,5 @@ public class AddCards : MonoBehaviour
 			card.transform.SetParent(i%2==0? GameField_A : GameField_B, false);
 		}
 	}
+
 }

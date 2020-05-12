@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 
 public class GameController : MonoBehaviour
@@ -117,11 +118,15 @@ public class GameController : MonoBehaviour
 		{
 			Debug.Log("Player "+ player_name + " guessed correct! :D");
 			Debug.Log("Game Finished");
+
+            SceneManager.LoadScene(2);
+
 		}
 		else
 		{
 			Debug.Log(player_name+", you guessed wrong! :(");
-		}
+          
+        }
 	}
 
 

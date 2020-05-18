@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
 
+
 //Pattern aus Sprite
 	public Sprite[] allPattern;
 	public List<Sprite> gamePattern = new List<Sprite>();
@@ -125,6 +126,7 @@ public class GameController : MonoBehaviour
 		else
 		{
 			Debug.Log(player_name+", you guessed wrong! :(");
+       
           
         }
 	}

@@ -7,7 +7,8 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("GameScene");
     }
 
     public void EndGame()
@@ -21,6 +22,6 @@ public class MainMenu : MonoBehaviour
 
             Application.Quit();
 
-            //UnityEditor.EditorApplication.isPlaying = false;
+          //  UnityEditor.EditorApplication.isPlaying = false;
         }
 }

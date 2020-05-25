@@ -8,18 +8,21 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
 
+//Audio
+    public AudioSource GameOver;
+
 //Pattern aus Sprite
-	public Sprite[] allPattern;
+    public Sprite[] allPattern;
 	public List<Sprite> gamePattern = new List<Sprite>();
     
 //Leere Liste mit Button Objects
 	public List<Button> cards = new List<Button>();
   
-// Sprites Pattern aus Ordner laden bei Laufzeit
+ // Sprites Pattern aus Ordner laden bei Laufzeit
     void Awake()
 	{
 		allPattern = Resources.LoadAll<Sprite>("Sprites/cards");
-	}
+    }
 
 //start
     void Start()
@@ -125,9 +128,10 @@ public class GameController : MonoBehaviour
 		else
 		{
 			Debug.Log(player_name+", you guessed wrong! :(");
-          
+            GameOver.Play();
+
         }
-	}
+    }
 
 
 } //GameController

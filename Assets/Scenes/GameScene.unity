@@ -903,6 +903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a0ad2d7879c240eb892e2562486dd97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winText: {fileID: 0}
   GameOver: {fileID: 1448054434}
   allPattern: []
   gamePattern: []

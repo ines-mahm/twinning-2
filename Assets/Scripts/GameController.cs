@@ -7,8 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    //Winner Textfeld
+    public Text winText;
 
-//Audio
+    //Audio
     public AudioSource GameOver;
 
 //Pattern aus Sprite
@@ -17,7 +19,8 @@ public class GameController : MonoBehaviour
     
 //Leere Liste mit Button Objects
 	public List<Button> cards = new List<Button>();
-  
+
+    
  // Sprites Pattern aus Ordner laden bei Laufzeit
     void Awake()
 	{
@@ -32,6 +35,8 @@ public class GameController : MonoBehaviour
 		DefineRandomPattern();
 		//Shuffle(gamePattern);
 		AddCardPattern();
+        winText.text = "";
+      
 	}
 
 // Leere Karten aufrufen und Befüllen der Liste mit Button Component
@@ -115,23 +120,31 @@ public class GameController : MonoBehaviour
 	}
 
  //Playercontroll
-	void CheckIfGameIsFinished(bool gameWon, string player_name)
+	public void CheckIfGameIsFinished(bool gameWon, string player_name)
 	{
 		if (gameWon)
 		{
 			Debug.Log("Player "+ player_name + " guessed correct! :D");
 			Debug.Log("Game Finished");
-
+         
             SceneManager.LoadScene(2);
 
-		}
-		else
+            winText.text = "Player " + player_name + " guessed correct! :D";
+
+
+
+        }
+
+		/*else
 		{
 			Debug.Log(player_name+", you guessed wrong! :(");
             GameOver.Play();
 
-        }
+        } */
+
+
     }
 
+   
 
 } //GameController

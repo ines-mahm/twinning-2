@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    //Winner Textfeld
-    public Text winText;
 
     //Audio
     public AudioSource GameOver;
@@ -19,9 +17,10 @@ public class GameController : MonoBehaviour
     
 //Leere Liste mit Button Objects
 	public List<Button> cards = new List<Button>();
+    internal static Text player_name;
 
-    
- // Sprites Pattern aus Ordner laden bei Laufzeit
+
+    // Sprites Pattern aus Ordner laden bei Laufzeit
     void Awake()
 	{
 		allPattern = Resources.LoadAll<Sprite>("Sprites/cards");
@@ -35,7 +34,7 @@ public class GameController : MonoBehaviour
 		DefineRandomPattern();
 		//Shuffle(gamePattern);
 		AddCardPattern();
-        winText.text = "";
+        
       
 	}
 
@@ -126,25 +125,18 @@ public class GameController : MonoBehaviour
 		{
 			Debug.Log("Player "+ player_name + " guessed correct! :D");
 			Debug.Log("Game Finished");
-         
+
             SceneManager.LoadScene(2);
-
-            winText.text = "Player " + player_name + " guessed correct! :D";
-
-
 
         }
 
-		/*else
+		else
 		{
 			Debug.Log(player_name+", you guessed wrong! :(");
             GameOver.Play();
 
-        } */
-
+        } 
 
     }
-
-   
 
 } //GameController

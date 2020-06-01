@@ -12,18 +12,12 @@ public class WinnerFeedback : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        winText.text = "";
+        GameObject GameControllerScript = GameObject.Find("GameControllerScript");
+        winText.text = "Player " + GameControllerScript.GetComponent<GameController>().winner + " has won!";
     }
 
     // Update is called once per frame
-    public void Update (string player_name)
+    public void Update()
     {
-        winText = GameController.player_name;
-
-        
-        winText.text = "Player " + player_name + " guessed correct! :D";
-
-        
-
     }
 }

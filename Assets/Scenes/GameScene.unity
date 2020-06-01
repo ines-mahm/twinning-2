@@ -618,7 +618,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8c75ac46c95234417ac4798a9b927fb1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.86
+  m_Volume: 0.67
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -903,11 +903,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a0ad2d7879c240eb892e2562486dd97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winText: {fileID: 0}
   GameOver: {fileID: 1448054434}
   allPattern: []
   gamePattern: []
   cards: []
+  winner: 
 --- !u!1 &1854592974
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,7 +24,11 @@ public class GameController : MonoBehaviour
     // Sprites Pattern aus Ordner laden bei Laufzeit
     void Awake()
     {
-        if (Instance == null) { Instance = this; } else if (Instance != this) { Destroy(this); }
+        if (Instance == null) {
+            Instance = this;
+        } else if (Instance != this) {
+            Destroy(this);
+        }
         DontDestroyOnLoad(gameObject);
         allPattern = Resources.LoadAll<Sprite>("Sprites/cards");
     }
@@ -127,8 +131,7 @@ public class GameController : MonoBehaviour
             Debug.Log("Player " + player_name + " guessed correct! :D");
             Debug.Log("Game Finished");
             winner = player_name;
-            SceneManager.LoadScene(2);
-
+            SceneManager.LoadScene("EndScene");
         }
 
         else

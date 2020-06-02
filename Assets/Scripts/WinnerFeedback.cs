@@ -13,7 +13,7 @@ public class WinnerFeedback : MonoBehaviour
     void Start()
     {
         GameObject GameControllerScript = GameObject.Find("GameControllerScript");
-        winText.text = "Player " + GameControllerScript.GetComponent<GameController>().winner + " has won!";
+        winText.text = "PLAYER " + GameControllerScript.GetComponent<GameController>().winner + " HAS WON!";
     }
 
     // Update is called once per frame

@@ -342,7 +342,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 200.9, y: -660}
+  m_AnchoredPosition: {x: 200.9, y: -668.93}
   m_SizeDelta: {x: 392.2, y: 204.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &979406294
@@ -554,7 +554,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -204.5, y: -660}
+  m_AnchoredPosition: {x: -204.5, y: -668.93}
   m_SizeDelta: {x: 392.2, y: 204.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1113660064
@@ -903,7 +903,7 @@ GameObject:
   - component: {fileID: 1618488044}
   - component: {fileID: 1618488043}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BackgroundImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -976,7 +976,7 @@ GameObject:
   - component: {fileID: 1664716969}
   - component: {fileID: 1664716968}
   m_Layer: 5
-  m_Name: Win Text
+  m_Name: WinText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -998,7 +998,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 75}
+  m_AnchoredPosition: {x: 0, y: 111.3}
   m_SizeDelta: {x: 1980, y: 181}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1664716968
@@ -1021,11 +1021,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 7078c15540fbe4f6d8b6076d01228d1e, type: 3}
-    m_FontSize: 100
+    m_FontSize: 130
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 100
+    m_MaxSize: 140
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1

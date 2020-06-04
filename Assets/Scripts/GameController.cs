@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour
         } else if (Instance != this) {
             Destroy(this);
         }
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         allPattern = Resources.LoadAll<Sprite>("Sprites/cards");
     }
 

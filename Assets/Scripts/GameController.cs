@@ -66,6 +66,12 @@ public class GameController : MonoBehaviour
             listCopy.RemoveAt(randNum);
         }
 
+        //Pattern auf gleiche Anzahl wie Karten
+        while (gamePattern.Count > cards.Count)
+        {
+            gamePattern.RemoveAt(gamePattern.Count - 1);
+        }
+
         // Eine Karte doppelt anzeigen, indem man eine überschreibt
         randNum = Random.Range(2, gamePattern.Count);
         gamePattern[randNum % 2 == 0 ? 1 : 0] = gamePattern[randNum];

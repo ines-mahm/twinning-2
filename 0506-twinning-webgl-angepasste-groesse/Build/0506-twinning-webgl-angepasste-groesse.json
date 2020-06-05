@@ -1,0 +1,16 @@
+{
+"companyName": "DefaultCompany",
+"productName": "twinning-2",
+"productVersion": "0.1",
+"dataUrl": "0506-twinning-webgl-angepasste-groesse.data.unityweb",
+"wasmCodeUrl": "0506-twinning-webgl-angepasste-groesse.wasm.code.unityweb",
+"wasmFrameworkUrl": "0506-twinning-webgl-angepasste-groesse.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.2.9f1"
+}

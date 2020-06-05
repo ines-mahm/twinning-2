@@ -25,4 +25,10 @@ public class MainMenu : MonoBehaviour
 
             //UnityEditor.EditorApplication.isPlaying = false;
         }
+
+    public void StartScreen()
+    { 
+        SceneManager.LoadScene("StartScene");
+
+    }
 }

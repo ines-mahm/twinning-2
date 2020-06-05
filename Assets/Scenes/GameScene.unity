@@ -580,7 +580,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: EXIT
+  m_Text: BACK
 --- !u!222 &632544933
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1019,7 +1019,7 @@ GameObject:
   - component: {fileID: 1902763162}
   - component: {fileID: 1902763161}
   m_Layer: 5
-  m_Name: Button_Exit
+  m_Name: Button_Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1089,7 +1089,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 347137198}
-        m_MethodName: QuitGame
+        m_MethodName: StartScreen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
